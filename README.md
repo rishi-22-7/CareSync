@@ -44,30 +44,22 @@ Before you begin, ensure you have the following installed:
 ### 1. Database Setup
 1. Open your MySQL terminal or Workbench.
 2. Create a new database for the project:
-   ```sql
+
    CREATE DATABASE caresync_db;
-````
 
 ### 2\. Backend Setup (FastAPI)
 
 1.  Navigate to the backend directory:
-    ```bash
     cd backend
-    ```
 2.  Create and activate a virtual environment:
-    ```bash
     python -m venv venv
     # On Windows:
     venv\Scripts\activate
     # On macOS/Linux:
     source venv/bin/activate
-    ```
 3.  Install the required Python dependencies:
-    ```bash
     pip install -r requirements.txt
-    ```
 4.  **Environment Variables:** Create a `.env` file in the `backend` root folder and add your specific credentials:
-    ```env
     # Database Configuration
     DATABASE_URL=mysql+pymysql://root:YOUR_MYSQL_PASSWORD@localhost:3306/caresync_db
 
@@ -80,26 +72,20 @@ Before you begin, ensure you have the following installed:
     CLOUDINARY_CLOUD_NAME=your_cloud_name
     CLOUDINARY_API_KEY=your_api_key
     CLOUDINARY_API_SECRET=your_api_secret
-    ```
+    
 5.  Run the backend server:
-    ```bash
     uvicorn main:app --reload
-    ```
 
 ### 3\. Frontend Setup (React)
 
-1.  Open a new terminal instance and navigate to the frontend directory:
-    ```bash
+1.  Open a new terminal instance and navigate to the frontend directory:  
     cd frontend
-    ```
+
 2.  Install Node dependencies:
-    ```bash
     npm install
-    ```
+    
 3.  Start the development server:
-    ```bash
     npm start
-    ```
 
 -----
 
