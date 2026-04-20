@@ -1,12 +1,4 @@
-Here is a highly professional, complete `README.md` file designed specifically for your GitHub repository.
 
-It is structured to instantly impress anyone who visits your profile (like recruiters or professors) while providing exact, step-by-step instructions on how other developers can set up their own API keys to make the code work on their machines.
-
-***Remember to copy this text and save it exactly as `README.md` in the root folder of your repository.***
-
------
-
-````markdown
 # 💊 CareSync: Automated Medication Reminder System
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue.svg)
