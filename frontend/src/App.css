@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Custom component styles that can't be expressed cleanly with Tailwind utilities */
+
+/* ── Styled native <select> wrapper ── */
+.styled-select { position: relative; }
+.styled-select select { appearance: none; padding-right: 2rem; cursor: pointer; width: 100%; background-color: #18181b; color: #ffffff; border: 1px solid #27272a; border-radius: 0.5rem; padding: 0.625rem 0.75rem; font-size: 0.875rem; transition: border-color 0.2s; outline: none; }
+.styled-select select:hover { border-color: #3f3f46; }
+.styled-select select:focus { border-color: #426b89; }
+.styled-select select:focus-visible { outline: none; border-color: #426b89; box-shadow: 0 0 0 2px rgba(66, 107, 137, 0.1); }
+.styled-select select option { background-color: #27272a; color: #ffffff; }
+.styled-select-arrow { position: absolute; right: 0.65rem; top: 50%; transform: translateY(-50%); pointer-events: none; color: #71717a; }
+.styled-select--sm select { padding: 0.3rem 1.8rem 0.3rem 0.55rem; font-size: 0.78rem; }
+
+/* ── Dosage slot time input ── */
+.slot-time-wrap { position: relative; }
+.slot-time-wrap svg { position: absolute; left: 0.45rem; top: 50%; transform: translateY(-50%); color: #71717a; pointer-events: none; }
+.slot-time-input { padding: 0.3rem 0.5rem 0.3rem 1.6rem; background: #27272a; border: 1px solid transparent; border-radius: 8px; color: #fff; font-size: 0.78rem; font-family: inherit; outline: none; width: 92px; }
+.slot-time-input:focus { border-color: #2563eb; }
+
+/* ── Upload dropzone ── */
+.upload-dropzone { display: flex; align-items: center; justify-content: center; padding: 0.75rem 1rem; cursor: pointer; border: 1.5px dashed #3f3f46; border-radius: 8px; transition: border-color 0.2s, background 0.2s; min-height: 48px; }
+.upload-dropzone:hover { border-color: #52525b; background: rgba(255,255,255,0.02); }
+.upload-dropzone--has-file { border-style: solid; border-color: rgba(16,185,129,0.45); background: rgba(16,185,129,0.04); }
+.upload-dropzone-input { display: none; }
+.upload-dropzone-prompt { display: inline-flex; align-items: center; gap: 0.55rem; color: #52525b; font-size: 0.8rem; pointer-events: none; }
+.upload-dropzone-success { display: inline-flex; align-items: center; gap: 0.6rem; min-width: 0; }
+.upload-dropzone-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; }
+.upload-dropzone-success-text { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.upload-dropzone-filename { color: #fff; font-size: 0.8rem; font-weight: 500; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 260px; display: block; }
+.upload-dropzone-change { color: #52525b; font-size: 0.7rem; }
+.upload-dropzone-clear { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.35rem; padding: 0.22rem 0.55rem; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.18); border-radius: 6px; color: #f87171; font-size: 0.72rem; font-weight: 500; cursor: pointer; transition: background 0.18s; font-family: inherit; }
+.upload-dropzone-clear:hover { background: rgba(239,68,68,0.16); }
+
+/* ── Status dot pulse ── */
+.status-dot { width: 7px; height: 7px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite; flex-shrink: 0; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes slideUp { from {opacity:0;transform:translateY(12px)} to {opacity:1;transform:translateY(0)} }
+
+/* ── Modal animation ── */
+.modal-enter { animation: slideUp 0.25s ease; }
+
+/* ── Auth spinner ── */
+.auth-spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.25); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
