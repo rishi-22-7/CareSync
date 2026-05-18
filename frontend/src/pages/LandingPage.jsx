@@ -21,6 +21,12 @@ export function LandingPage() {
   };
 
   const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 80, damping: 15 },
+    },
     hover: { 
       y: -6, 
       boxShadow: "0 12px 20px -8px rgb(15 23 42 / 0.08)",
@@ -167,9 +173,8 @@ export function LandingPage() {
           >
             {/* Card 1 */}
             <motion.div 
-              variants={itemVariants}
-              whileHover="hover"
               variants={cardVariants}
+              whileHover="hover"
               className="p-8 bg-slate-50 rounded-3xl border border-transparent transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-2xl bg-sky-50 flex items-center justify-center text-xl text-sky-500 mb-6 border border-sky-100">
@@ -183,9 +188,8 @@ export function LandingPage() {
 
             {/* Card 2 */}
             <motion.div 
-              variants={itemVariants}
-              whileHover="hover"
               variants={cardVariants}
+              whileHover="hover"
               className="p-8 bg-slate-50 rounded-3xl border border-transparent transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-xl text-emerald-500 mb-6 border border-emerald-100">
@@ -199,9 +203,8 @@ export function LandingPage() {
 
             {/* Card 3 */}
             <motion.div 
-              variants={itemVariants}
-              whileHover="hover"
               variants={cardVariants}
+              whileHover="hover"
               className="p-8 bg-slate-50 rounded-3xl border border-transparent transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-xl text-indigo-500 mb-6 border border-indigo-100">
