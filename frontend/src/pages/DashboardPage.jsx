@@ -8,11 +8,7 @@ import { PatientCard } from "../components/PatientCard";
 import { Button } from "../components/ui/Button";
 import { EmptyState } from "../components/ui/EmptyState";
 import { ConfirmDialog } from "../components/ui/ConfirmDialog";
-
-// SVG Icons
-const IconPlus  = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>;
-const IconClose = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
-const Chevron   = () => <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>;
+import { Plus, X, ChevronDown, Search } from "lucide-react";
 
 export function DashboardPage({ currentAdmin, onLogout }) {
   const navigate = useNavigate();
@@ -151,9 +147,9 @@ export function DashboardPage({ currentAdmin, onLogout }) {
             className="shadow-md"
           >
             {showAddForm ? (
-              <><IconClose /> Close</>
+              <><X className="w-4 h-4" /> Close</>
             ) : (
-              <><IconPlus /> Add New Ward</>
+              <><Plus className="w-4 h-4" /> Add New Ward</>
             )}
           </Button>
         </div>
@@ -210,7 +206,7 @@ export function DashboardPage({ currentAdmin, onLogout }) {
                       ))}
                     </select>
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                      <Chevron />
+                      <ChevronDown className="w-4 h-4" />
                     </span>
                   </div>
                 </div>
@@ -268,7 +264,7 @@ export function DashboardPage({ currentAdmin, onLogout }) {
                         ))}
                       </select>
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                        <Chevron />
+                        <ChevronDown className="w-4 h-4" />
                       </span>
                     </div>
                   </div>
@@ -289,7 +285,7 @@ export function DashboardPage({ currentAdmin, onLogout }) {
         {/* Search Bar filter */}
         {patients.length > 0 && (
           <div className="mb-6 relative flex items-center">
-            <span className="absolute left-4 text-slate-400 text-sm">🔍</span>
+            <Search className="absolute left-4 text-slate-400 w-4 h-4" />
             <input 
               type="text" 
               placeholder="Search ward by name or phone..." 
@@ -300,9 +296,9 @@ export function DashboardPage({ currentAdmin, onLogout }) {
             {searchTerm && (
               <button 
                 onClick={() => setSearchTerm("")}
-                className="absolute right-4 text-slate-400 hover:text-slate-600 font-bold text-xs"
+                className="absolute right-4 text-slate-400 hover:text-slate-600 font-bold text-xs flex items-center gap-1 cursor-pointer select-none"
               >
-                ✕ Clear
+                <X className="w-3.5 h-3.5" /> Clear
               </button>
             )}
           </div>

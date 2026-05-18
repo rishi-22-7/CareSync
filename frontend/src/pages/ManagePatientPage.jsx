@@ -9,15 +9,7 @@ import { EmptyState } from "../components/ui/EmptyState";
 import { ConfirmDialog } from "../components/ui/ConfirmDialog";
 import { MedModal } from "../components/MedModal";
 import { DOSAGE_SLOTS, makeInitialMedForm, formatPhone } from "../constants";
-
-// SVGs
-const IconBack   = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>;
-const IconPencil = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>;
-const IconTrash  = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>;
-const IconPhone  = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.94-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>;
-const IconGlobe  = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>;
-const IconPlus   = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>;
-const Chevron    = () => <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>;
+import { ArrowLeft, Pencil, Trash2, Phone, Globe, Plus, ChevronDown } from "lucide-react";
 
 export function ManagePatientPage({ currentAdmin, onLogout }) {
   const { id } = useParams();
@@ -279,7 +271,7 @@ export function ManagePatientPage({ currentAdmin, onLogout }) {
           onClick={() => navigate("/dashboard")}
           className="mb-8"
         >
-          <IconBack /> Back to Dashboard
+          <ArrowLeft className="w-4 h-4" /> Back to Dashboard
         </Button>
 
         {/* Patient Profile Card */}
@@ -296,10 +288,10 @@ export function ManagePatientPage({ currentAdmin, onLogout }) {
             </div>
             <div className="flex gap-2.5">
               <Button variant="secondary" size="sm" onClick={handleStartEditPatient}>
-                <IconPencil /> Edit Info
+                <Pencil className="w-3.5 h-3.5" /> Edit Info
               </Button>
               <Button variant="danger" size="sm" onClick={handleDeletePatient}>
-                <IconTrash /> Delete Profile
+                <Trash2 className="w-3.5 h-3.5" /> Delete Profile
               </Button>
             </div>
           </div>
@@ -338,7 +330,7 @@ export function ManagePatientPage({ currentAdmin, onLogout }) {
                     ))}
                   </select>
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                    <Chevron />
+                    <ChevronDown className="w-4 h-4" />
                   </span>
                 </div>
               </div>
@@ -356,13 +348,13 @@ export function ManagePatientPage({ currentAdmin, onLogout }) {
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">WhatsApp Phone</span>
                 <span className="flex items-center gap-2 text-slate-700 text-sm font-semibold mt-1">
-                  <IconPhone /> +91 {formatPhone(patient.whatsapp_number)}
+                  <Phone className="w-3.5 h-3.5 text-slate-400" /> +91 {formatPhone(patient.whatsapp_number)}
                 </span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Preferred Language</span>
                 <span className="flex items-center gap-2 text-slate-700 text-sm font-semibold mt-1">
-                  <IconGlobe /> {patient.preferred_language}
+                  <Globe className="w-3.5 h-3.5 text-slate-400" /> {patient.preferred_language}
                 </span>
               </div>
             </div>
@@ -373,7 +365,7 @@ export function ManagePatientPage({ currentAdmin, onLogout }) {
         <div className="flex items-center justify-between gap-4 mb-6">
           <h2 className="text-slate-800 text-xl font-bold tracking-tight">Medications & Schedules</h2>
           <Button variant="primary" onClick={() => { setNewMed(makeInitialMedForm()); setShowAddMedModal(true); }}>
-            <IconPlus /> Add Medication
+            <Plus className="w-4 h-4" /> Add Medication
           </Button>
         </div>
 
@@ -438,10 +430,10 @@ export function ManagePatientPage({ currentAdmin, onLogout }) {
 
                 <div className="flex md:flex-col gap-2 w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 border-slate-50 md:self-stretch justify-end md:justify-start items-center">
                   <Button variant="ghost" size="sm" onClick={() => startEditMed(med)} className="w-full md:w-auto">
-                    <IconPencil /> Edit
+                    <Pencil className="w-3.5 h-3.5" /> Edit
                   </Button>
                   <Button variant="danger" size="sm" onClick={() => handleDeleteMed(med.id)} className="w-full md:w-auto">
-                    <IconTrash /> Delete
+                    <Trash2 className="w-3.5 h-3.5" /> Delete
                   </Button>
                 </div>
               </motion.div>
