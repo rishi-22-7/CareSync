@@ -30,7 +30,7 @@ export function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 overflow-x-hidden selection:bg-sky-500 selection:text-white">
+    <div className="min-h-screen bg-slate-100 overflow-x-hidden selection:bg-sky-500 selection:text-white">
       {/* Header / Nav */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/60 shadow-sm shadow-slate-100/40">
         <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">

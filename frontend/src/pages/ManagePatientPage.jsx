@@ -261,14 +261,14 @@ export function ManagePatientPage({ currentAdmin, onLogout }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-center">
         <div className="w-10 h-10 border-4 border-sky-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-slate-100 flex flex-col">
       <Navbar adminName={currentAdmin?.name} onLogout={onLogout} />
 
       <main className="max-w-4xl mx-auto px-6 py-10 flex-1 w-full">

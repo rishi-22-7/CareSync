@@ -19,7 +19,7 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: #f8fafc; /* Slate 50 - soft professional background */
+  background-color: #f1f5f9; /* Slate 100 - soft premium background */
   color: #0f172a; /* Slate 900 */
   overflow-x: hidden;
 }

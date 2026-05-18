@@ -58,7 +58,7 @@ export function LoginPage({ onAuth }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
       <div className="w-full max-w-4xl bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 flex flex-col md:flex-row min-h-[500px]">
         
         {/* Left Side: Branded Design Accent */}

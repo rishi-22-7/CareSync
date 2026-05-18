@@ -91,7 +91,7 @@ export function ProfilePage({ currentAdmin, onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-slate-100 flex flex-col">
       <Navbar adminName={currentAdmin?.name} onLogout={onLogout} />
 
       <main className="max-w-4xl mx-auto px-6 py-10 flex-1 w-full">
