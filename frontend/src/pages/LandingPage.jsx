@@ -22,9 +22,9 @@ export function LandingPage() {
 
   const cardVariants = {
     hover: { 
-      y: -10, 
-      boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05)",
-      borderColor: "#e0f2fe",
+      y: -6, 
+      boxShadow: "0 12px 20px -8px rgb(15 23 42 / 0.08)",
+      borderColor: "#e2e8f0",
       transition: { type: "spring", stiffness: 300, damping: 20 }
     }
   };
@@ -32,30 +32,27 @@ export function LandingPage() {
   return (
     <div className="min-h-screen bg-slate-50 overflow-x-hidden selection:bg-sky-500 selection:text-white">
       {/* Header / Nav */}
-      <nav className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-2xl bg-sky-500 flex items-center justify-center font-bold text-white shadow-md shadow-sky-200">
-            C
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/60 shadow-sm shadow-slate-100/40">
+        <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center">
+            <img src="/caresync-logo.png" alt="CareSync" className="h-8.5 w-auto object-contain" />
           </div>
-          <span className="text-slate-800 font-bold text-xl tracking-tight">
-            Care<span className="text-sky-500">Sync</span>
-          </span>
-        </div>
-        <div className="flex items-center gap-4">
-          <Link 
-            to="/login" 
-            className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors"
-          >
-            Sign In
-          </Link>
-          <Link 
-            to="/login?register=true" 
-            className="px-5 py-2.5 text-sm font-bold text-white bg-sky-500 hover:bg-sky-600 active:bg-sky-700 rounded-xl shadow-md shadow-sky-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 active:scale-95"
-          >
-            Get Started Free
-          </Link>
-        </div>
-      </nav>
+          <div className="flex items-center gap-4">
+            <Link 
+              to="/login" 
+              className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors"
+            >
+              Sign In
+            </Link>
+            <Link 
+              to="/login?register=true" 
+              className="px-5 py-2.5 text-sm font-bold text-white bg-sky-500 hover:bg-sky-600 active:bg-sky-700 rounded-xl shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 active:scale-95"
+            >
+              Get Started Free
+            </Link>
+          </div>
+        </nav>
+      </header>
 
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
@@ -287,13 +284,8 @@ export function LandingPage() {
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-12 text-center text-sm border-t border-slate-800">
         <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-sky-500 flex items-center justify-center font-bold text-white shadow-md shadow-sky-300/20">
-              C
-            </div>
-            <span className="text-white font-bold text-base tracking-tight">
-              Care<span className="text-sky-500">Sync</span>
-            </span>
+          <div className="flex items-center bg-white/95 px-3 py-1.5 rounded-xl">
+            <img src="/caresync-logo.png" alt="CareSync" className="h-7 w-auto object-contain" />
           </div>
           <p className="font-semibold text-slate-500">© 2026 CareSync. Intelligent Care Automations.</p>
         </div>

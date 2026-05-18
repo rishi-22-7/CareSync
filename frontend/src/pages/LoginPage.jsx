@@ -65,13 +65,8 @@ export function LoginPage({ onAuth }) {
           <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
           
-          <Link to="/" className="flex items-center gap-2.5 z-10 self-start">
-            <div className="w-9 h-9 rounded-xl bg-white text-sky-500 flex items-center justify-center font-extrabold shadow-md">
-              C
-            </div>
-            <span className="text-white font-extrabold text-lg tracking-tight">
-              CareSync
-            </span>
+          <Link to="/" className="z-10 self-start">
+            <img src="/caresync-logo.png" alt="CareSync" className="h-8.5 w-auto object-contain bg-white/95 px-3.5 py-2 rounded-2xl shadow-sm" />
           </Link>
           
           <div className="my-10 z-10 flex flex-col gap-3">

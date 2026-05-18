@@ -10,13 +10,8 @@ export function Navbar({ adminName, onLogout }) {
       <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-2">
           {/* Logo Brand */}
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-sky-500 flex items-center justify-center font-bold text-white shadow-md shadow-sky-200">
-              C
-            </div>
-            <span className="text-slate-800 font-bold text-lg tracking-tight">
-              Care<span className="text-sky-500">Sync</span>
-            </span>
+          <div className="flex items-center">
+            <img src="/caresync-logo.png" alt="CareSync" className="h-8.5 w-auto object-contain" />
           </div>
         </div>
         

@@ -16,7 +16,7 @@ export function PatientCard({ patient, onManage, onEdit, onDelete }) {
 
   return (
     <div 
-      className="flex flex-col gap-4 p-6 bg-white border border-slate-100 rounded-3xl hover:border-sky-100 hover:shadow-xl hover:shadow-sky-100/30 transition-all duration-300 cursor-pointer group relative overflow-hidden"
+      className="flex flex-col gap-4 p-6 bg-white border border-slate-100 rounded-3xl hover:border-sky-100 hover:shadow-md hover:shadow-slate-200/50 transition-all duration-300 cursor-pointer group relative overflow-hidden"
       onClick={() => onManage(patient)}
     >
       {/* Decorative Top Bar */}
