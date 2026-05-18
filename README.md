@@ -35,7 +35,7 @@ CareSync is a premium, web-based healthcare assistant application designed to br
 | **Backend** | FastAPI (Python 3) | Asynchronous RESTful API Engine |
 | **Database** | PostgreSQL (Supabase) | Scalable Relational Storage |
 | **API ORM** | SQLAlchemy | Python Object Relational Mapper |
-| **Messaging** | Twilio WhatsApp API | Outbound Gateway |
+| **Messaging** | Twilio WhatsApp API | Outbound Notification Gateway |
 | **Media Host** | Cloudinary | Secure Medication Image Hosting |
 
 ---
@@ -98,22 +98,72 @@ CareSync_Project/
 > 1. Log into the CareSync Web App.
 > 2. On the top of the **Dashboard**, you will see a green banner labeled **"Sandbox Reviewer Opt-in Mode"**.
 > 3. Click the **📲 Activate on WhatsApp** button.
-> 4. This will automatically open WhatsApp on your phone or browser, starting a chat with `+1 415 523 8886` and pre-filling the message with: **`join frog-explain`**.
+> 4. This will automatically open WhatsApp on your phone or browser, starting a chat with `+1 415 523 8886` and pre-filling the message with: **`join frog-explain`**. (Or your custom sandbox keyword).
 > 5. Click **Send** in WhatsApp.
 > 6. Return to the CareSync website, register your phone number (e.g. `+91XXXXXXXXXX`) as a patient, schedule a medication, and click **Trigger WhatsApp**. It will land instantly on your phone with the visual prescription!
 
 ---
 
-## ⚙️ Local Installation & Configuration
+## ⚙️ Detailed Third-Party Service Setup
 
-### Prerequisites
-*   Python 3.10+
-*   Node.js (v18+)
-*   Supabase PostgreSQL DB URL
-*   Twilio Account (Free Sandbox credentials)
-*   Cloudinary Account (Free media cloud name/keys)
+To run this project, you need credentials from **Supabase (Database)**, **Twilio (WhatsApp SMS)**, and **Cloudinary (Media Hosting)**. Follow the detailed steps below to configure them:
+
+### 1. Supabase (PostgreSQL Database Setup)
+Supabase provides the hosted PostgreSQL database where patient, caretaker, and medication logs are stored.
+1.  Go to [supabase.com](https://supabase.com) and click **Sign Up** (or log in with GitHub).
+2.  Click **New Project** ➡️ Select your organization.
+3.  Name your project `CareSync`, enter a secure database password, and choose a region nearest to you.
+4.  Once the project spins up (takes 1-2 minutes), navigate to the **Project Settings** (gear icon) in the left sidebar.
+5.  Click on **Database** under settings.
+6.  Scroll down to the **Connection String** section and select the **URI** tab.
+7.  Copy the connection string. It will look like this:
+    ```text
+    postgresql://postgres.[your-project-ref]:[your-password]@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
+    ```
+8.  *Important:* Since SQLAlchemy uses `psycopg2`, add `+psycopg2` after `postgresql` and replace `[your-password]` with the database password you chose in step 3. The final string for your `.env` should look like:
+    ```env
+    DATABASE_URL=postgresql+psycopg2://postgres.[your-project-ref]:yourpassword@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
+    ```
 
 ---
+
+### 2. Twilio (WhatsApp API Gateway Setup)
+Twilio handles the automated outbound WhatsApp medication reminder messages.
+1.  Go to [twilio.com](https://www.twilio.com) and sign up for a free trial account.
+2.  Once logged in and inside your Twilio Console home page, locate your credentials in the **Account Info** dashboard:
+    *   **Account SID**: Copy this string (starts with `AC...`).
+    *   **Auth Token**: Click "Show" and copy this token.
+3.  In the left navigation sidebar of your Twilio console, navigate to:
+    **Messaging** ➡️ **Try it out** ➡️ **Send a WhatsApp Message**.
+4.  You will see your shared Sandbox Number (typically `+1 415 523 8886`) and a unique keyword (e.g. `join standard-choice` or similar).
+5.  Save these values to your backend `.env` file:
+    ```env
+    TWILIO_ACCOUNT_SID=your_copied_account_sid
+    TWILIO_AUTH_TOKEN=your_copied_auth_token
+    TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
+    TWILIO_SANDBOX_KEYWORD=your-sandbox-keyword (e.g. standard-choice)
+    ```
+
+---
+
+### 3. Cloudinary (Prescription Image Storage Setup)
+Cloudinary is used to host prescription images uploaded by caretakers, generating optimized HTTPS delivery URLs for WhatsApp.
+1.  Go to [cloudinary.com](https://cloudinary.com) and sign up for a free account.
+2.  Upon logging in, you will be redirected to your **Cloudinary Dashboard**.
+3.  In the top section of your dashboard, locate the **Product Environment Credentials**:
+    *   **Cloud Name** (e.g. `dvcafocq0`)
+    *   **API Key** (e.g. `212999676874887`)
+    *   **API Secret** (e.g. `JcfQvPdc8t57qw3DX9GKneMId1A`)
+4.  Copy these three values and add them to your backend `.env` file:
+    ```env
+    CLOUDINARY_CLOUD_NAME=your_cloud_name
+    CLOUDINARY_API_KEY=your_api_key
+    CLOUDINARY_API_SECRET=your_api_secret
+    ```
+
+---
+
+## ⚙️ Local Installation & Configuration
 
 ### Backend Setup
 
@@ -131,18 +181,23 @@ CareSync_Project/
     ```bash
     pip install -r requirements.txt
     ```
-4.  Configure your local environment variables. Create a `.env` file in the `backend/` directory:
+4.  Create your backend `.env` file in the `backend/` directory using the credentials acquired in the **Detailed Setup** steps above:
     ```env
-    DATABASE_URL=postgresql+psycopg2://postgres:your-supabase-db-url
-    TWILIO_ACCOUNT_SID=your_twilio_sid
-    TWILIO_AUTH_TOKEN=your_twilio_auth_token
+    DATABASE_URL=postgresql+psycopg2://postgres.[project-ref]:password@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
+    TWILIO_ACCOUNT_SID=AC...
+    TWILIO_AUTH_TOKEN=...
     TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
     TWILIO_SANDBOX_KEYWORD=frog-explain
-    CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-    CLOUDINARY_API_KEY=your_cloudinary_key
-    CLOUDINARY_API_SECRET=your_cloudinary_secret
+    CLOUDINARY_CLOUD_NAME=...
+    CLOUDINARY_API_KEY=...
+    CLOUDINARY_API_SECRET=...
     ```
-5.  Start the FastAPI server:
+5.  **Initialize Database Tables**:
+    CareSync includes an automated schema setup script. To create your database tables (`admins`, `patients`, `medications`) inside your Supabase instance, simply run:
+    ```bash
+    python create_tables.py
+    ```
+6.  Start the FastAPI server:
     ```bash
     uvicorn app.main:app --reload
     ```
