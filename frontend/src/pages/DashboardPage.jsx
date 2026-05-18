@@ -123,20 +123,20 @@ export function DashboardPage({ currentAdmin, onLogout }) {
   );
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col transition-colors duration-300">
       <Navbar adminName={currentAdmin?.name} onLogout={onLogout} />
 
       <main className="max-w-6xl mx-auto px-6 py-10 flex-1 w-full">
         {/* Header Summary */}
         <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
           <div>
-            <h1 className="text-slate-800 text-3xl font-extrabold tracking-tight">Dashboard</h1>
-            <p className="text-slate-400 text-sm font-semibold mt-1">
+            <h1 className="text-slate-800 dark:text-slate-100 text-3xl font-extrabold tracking-tight">Dashboard</h1>
+            <p className="text-slate-400 dark:text-slate-500 text-sm font-semibold mt-1">
               Active wards medication logs and triggers • Sync:{" "}
               {lastSync ? (
                 <span className="text-sky-500 font-bold">{lastSync}</span>
               ) : (
-                <span className="text-slate-400 font-bold">connecting...</span>
+                <span className="text-slate-400 dark:text-slate-600 font-bold">connecting...</span>
               )}
             </p>
           </div>
@@ -162,19 +162,19 @@ export function DashboardPage({ currentAdmin, onLogout }) {
               animate={{ opacity: 1, height: "auto", y: 0 }}
               exit={{ opacity: 0, height: 0, y: -10 }}
               transition={{ duration: 0.25 }}
-              className="bg-white border border-slate-100 rounded-3xl p-6 mb-8 shadow-sm overflow-hidden"
+              className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 mb-8 shadow-sm overflow-hidden transition-colors"
             >
-              <h2 className="text-slate-800 font-bold text-base mb-4">Register New Ward</h2>
+              <h2 className="text-slate-800 dark:text-slate-200 font-bold text-base mb-4">Register New Ward</h2>
               <form className="grid grid-cols-1 md:grid-cols-3 gap-5" onSubmit={handleAddPatient}>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Ward Name</label>
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Ward Name</label>
                   <input 
                     type="text" 
                     placeholder="e.g. Grandma Sharma" 
                     value={newPatient.name}
                     onChange={e => setNewPatient({ ...newPatient, name: e.target.value })} 
                     required
-                    className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white transition-colors" 
+                    className="px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-200 text-sm outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 transition-colors" 
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
