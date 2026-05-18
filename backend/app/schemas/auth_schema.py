@@ -10,3 +10,10 @@ class AdminCreate(BaseModel):
 class AdminLogin(BaseModel):
     email: str
     password: str
+
+
+class AdminPasswordChange(BaseModel):
+    admin_id: int
+    old_password: str
+    new_password: str
+

@@ -7,6 +7,7 @@ import { LandingPage } from "./pages/LandingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { ManagePatientPage } from "./pages/ManagePatientPage";
+import { ProfilePage } from "./pages/ProfilePage";
 
 export default function App() {
   // Persistence for premium UX
@@ -100,6 +101,18 @@ export default function App() {
           element={
             currentAdmin ? (
               <ManagePatientPage currentAdmin={currentAdmin} onLogout={handleLogout} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          } 
+        />
+        
+        {/* Protected profile */}
+        <Route 
+          path="/profile" 
+          element={
+            currentAdmin ? (
+              <ProfilePage currentAdmin={currentAdmin} onLogout={handleLogout} />
             ) : (
               <Navigate to="/login" replace />
             )

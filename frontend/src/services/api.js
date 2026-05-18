@@ -18,6 +18,14 @@ export const authService = {
     const response = await api.post("/admin/register", { name, email, password });
     return response.data;
   },
+  changePassword: async (adminId, oldPassword, newPassword) => {
+    const response = await api.post("/admin/change-password", {
+      admin_id: adminId,
+      old_password: oldPassword,
+      new_password: newPassword,
+    });
+    return response.data;
+  },
 };
 
 export const patientService = {

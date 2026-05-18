@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function Navbar({ adminName, onLogout }) {
   const initials = adminName
@@ -17,14 +18,17 @@ export function Navbar({ adminName, onLogout }) {
         
         <div className="flex items-center gap-5">
           {/* Profile pill */}
-          <div className="flex items-center gap-3 bg-slate-50 border border-slate-100 px-3.5 py-1.5 rounded-full shadow-inner">
+          <Link 
+            to="/profile"
+            className="flex items-center gap-3 bg-slate-50 border border-slate-100 px-3.5 py-1.5 rounded-full shadow-inner hover:bg-slate-100 transition-colors"
+          >
             <div className="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-xs font-bold border border-sky-200/50">
               {initials}
             </div>
             <span className="text-slate-700 font-semibold text-sm max-w-[150px] truncate">
               {adminName || "Admin"}
             </span>
-          </div>
+          </Link>
 
           <button 
             onClick={onLogout}

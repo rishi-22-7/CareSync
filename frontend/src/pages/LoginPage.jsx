@@ -18,6 +18,7 @@ export function LoginPage({ onAuth }) {
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading]   = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     setIsLogin(!startAsRegister);
@@ -53,6 +54,7 @@ export function LoginPage({ onAuth }) {
     setName("");
     setEmail("");
     setPassword("");
+    setShowPassword(false);
   };
 
   return (
@@ -66,7 +68,7 @@ export function LoginPage({ onAuth }) {
           <div className="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
           
           <Link to="/" className="z-10 self-start">
-            <img src="/caresync-logo.png" alt="CareSync" className="h-8.5 w-auto object-contain bg-white/95 px-3.5 py-2 rounded-2xl shadow-sm" />
+            <img src="/caresync-logo.png" alt="CareSync" className="h-11 w-auto object-contain bg-white px-5 py-2.5 rounded-2xl shadow-sm border border-slate-200/50" />
           </Link>
           
           <div className="my-10 z-10 flex flex-col gap-3">
@@ -123,14 +125,23 @@ export function LoginPage({ onAuth }) {
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Secure Password</label>
-                <input 
-                  type="password" 
-                  placeholder="••••••••" 
-                  value={password}
-                  onChange={e => setPassword(e.target.value)} 
-                  required
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white placeholder-slate-400 transition-colors"
-                />
+                <div className="relative flex items-center">
+                  <input 
+                    type={showPassword ? "text" : "password"} 
+                    placeholder="••••••••" 
+                    value={password}
+                    onChange={e => setPassword(e.target.value)} 
+                    required
+                    className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white placeholder-slate-400 transition-colors"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 text-sky-500 hover:text-sky-600 focus:outline-none cursor-pointer select-none text-[10px] font-extrabold tracking-wider"
+                  >
+                    {showPassword ? "HIDE" : "SHOW"}
+                  </button>
+                </div>
               </div>
 
               <Button 
