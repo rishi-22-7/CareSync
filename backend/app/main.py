@@ -33,6 +33,12 @@ def root():
     return {"message": "CareSync API is live!", "version": "2.0.0"}
 
 
+@app.get("/api/config", tags=["Config"])
+def get_config():
+    sandbox_keyword = os.getenv("TWILIO_SANDBOX_KEYWORD", "YOUR_SANDBOX_KEYWORD")
+    return {"twilio_sandbox_keyword": sandbox_keyword}
+
+
 # Register all routers
 app.include_router(auth.router)
 app.include_router(patients.router)

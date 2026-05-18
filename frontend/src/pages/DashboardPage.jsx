@@ -2,21 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
-import { patientService } from "../services/api";
+import { patientService, configService } from "../services/api";
 import { Navbar } from "../components/Navbar";
 import { PatientCard } from "../components/PatientCard";
 import { Button } from "../components/ui/Button";
 import { EmptyState } from "../components/ui/EmptyState";
 import { ConfirmDialog } from "../components/ui/ConfirmDialog";
 import { Plus, X, ChevronDown, Search } from "lucide-react";
-
-// =========================================================================
-// TWILIO SANDBOX REVIEWER CONFIGURATION
-// Replace "YOUR_SANDBOX_KEYWORD" with your exact Twilio sandbox keyword
-// (e.g., "standard-choice", "direct-industry", etc.) so your teacher/reviewer
-// can click a single button to auto-register their phone to receive messages!
-// =========================================================================
-const TWILIO_SANDBOX_KEYWORD = "YOUR_SANDBOX_KEYWORD";
 
 export function DashboardPage({ currentAdmin, onLogout }) {
   const navigate = useNavigate();
@@ -44,6 +36,9 @@ export function DashboardPage({ currentAdmin, onLogout }) {
     return localStorage.getItem("caresync_hide_sandbox") !== "true";
   });
 
+  // Sandbox keyword fetched dynamically from the backend configuration
+  const [sandboxKeyword, setSandboxKeyword] = useState("YOUR_SANDBOX_KEYWORD");
+
   const fetchPatients = async () => {
     if (!currentAdmin) return;
     try {
@@ -60,6 +55,18 @@ export function DashboardPage({ currentAdmin, onLogout }) {
   useEffect(() => {
     fetchPatients();
   }, [currentAdmin]);
+
+  useEffect(() => {
+    const fetchSandboxKeyword = async () => {
+      try {
+        const keyword = await configService.getSandboxKeyword();
+        if (keyword) setSandboxKeyword(keyword);
+      } catch (err) {
+        console.warn("Could not load Twilio Sandbox keyword from backend config API:", err);
+      }
+    };
+    fetchSandboxKeyword();
+  }, []);
 
   const handleAddPatient = async (e) => {
     e.preventDefault();
@@ -198,7 +205,7 @@ export function DashboardPage({ currentAdmin, onLogout }) {
 
               <div className="flex items-center gap-3 w-full md:w-auto flex-shrink-0">
                 <a
-                  href={`https://wa.me/14155238886?text=${encodeURIComponent("join " + TWILIO_SANDBOX_KEYWORD)}`}
+                  href={`https://wa.me/14155238886?text=${encodeURIComponent("join " + sandboxKeyword)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-5 py-3 text-center text-xs font-bold text-white bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 rounded-2xl shadow-lg shadow-emerald-200 dark:shadow-none transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 flex-1 md:flex-none cursor-pointer"

@@ -76,4 +76,11 @@ export const medicationService = {
   },
 };
 
+export const configService = {
+  getSandboxKeyword: async () => {
+    const response = await api.get("/api/config");
+    return response.data.twilio_sandbox_keyword;
+  },
+};
+
 export default api;
