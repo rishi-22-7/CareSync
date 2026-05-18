@@ -178,7 +178,7 @@ export function DashboardPage({ currentAdmin, onLogout }) {
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">WhatsApp Phone (10 digits)</label>
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">WhatsApp Phone (10 digits)</label>
                   <div className="relative flex items-center">
                     <span className="absolute left-4 text-slate-400 font-bold text-sm select-none">+91</span>
                     <input 
@@ -189,20 +189,20 @@ export function DashboardPage({ currentAdmin, onLogout }) {
                       value={newPatient.phone}
                       onChange={e => setNewPatient({ ...newPatient, phone: e.target.value })} 
                       required
-                      className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white transition-colors" 
+                      className="w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-200 text-sm outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 transition-colors" 
                     />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Preferred Language</label>
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Preferred Language</label>
                   <div className="relative">
                     <select 
                       value={newPatient.preferred_language} 
                       onChange={e => setNewPatient({ ...newPatient, preferred_language: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white transition-colors appearance-none cursor-pointer pr-10"
+                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-200 text-sm outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 transition-colors appearance-none cursor-pointer pr-10"
                     >
                       {["English", "Hindi", "Telugu", "Tamil", "Kannada", "Malayalam"].map(l => (
-                        <option key={l} value={l}>{l}</option>
+                        <option key={l} value={l} className="dark:bg-slate-900 dark:text-slate-200">{l}</option>
                       ))}
                     </select>
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
@@ -214,7 +214,7 @@ export function DashboardPage({ currentAdmin, onLogout }) {
                   <Button type="submit" variant="primary" disabled={submittingPatient}>
                     Register Profile
                   </Button>
-                  <Button variant="secondary" onClick={() => setShowAddForm(false)}>
+                  <Button variant="secondary" onClick={() => setShowAddForm(false)} className="dark:bg-slate-950 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800">
                     Cancel
                   </Button>
                 </div>
@@ -226,18 +226,18 @@ export function DashboardPage({ currentAdmin, onLogout }) {
         {/* Dynamic Edit Dialog Modal */}
         <AnimatePresence>
           {editingPatient && (
-            <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md flex items-center justify-center z-[200] p-4" onClick={() => setEditingPatient(null)}>
+            <div className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center z-[200] p-4" onClick={() => setEditingPatient(null)}>
               <motion.div 
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                className="bg-white border border-slate-100 rounded-3xl p-6 w-full max-w-md shadow-xl"
+                className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 w-full max-w-md shadow-2xl transition-colors"
                 onClick={e => e.stopPropagation()}
               >
-                <h3 className="text-slate-800 font-bold text-lg mb-4">Edit Info for {editingPatient.name}</h3>
+                <h3 className="text-slate-800 dark:text-slate-100 font-bold text-lg mb-4">Edit Info for {editingPatient.name}</h3>
                 <form onSubmit={handleSavePatientEdit} className="flex flex-col gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Phone (10 digits)</label>
+                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Phone (10 digits)</label>
                     <div className="relative flex items-center">
                       <span className="absolute left-4 text-slate-400 font-bold text-sm">+91</span>
                       <input 
@@ -247,20 +247,20 @@ export function DashboardPage({ currentAdmin, onLogout }) {
                         value={editingPatient.phone}
                         onChange={e => setEditingPatient({ ...editingPatient, phone: e.target.value })}
                         required
-                        className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white"
+                        className="w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-200 text-sm outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 transition-colors"
                       />
                     </div>
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Language</label>
+                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Language</label>
                     <div className="relative">
                       <select 
                         value={editingPatient.preferred_language}
                         onChange={e => setEditingPatient({ ...editingPatient, preferred_language: e.target.value })}
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white appearance-none cursor-pointer"
+                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-200 text-sm outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 transition-colors appearance-none cursor-pointer pr-10"
                       >
                         {["English", "Hindi", "Telugu", "Tamil", "Kannada", "Malayalam"].map(l => (
-                          <option key={l} value={l}>{l}</option>
+                          <option key={l} value={l} className="dark:bg-slate-900 dark:text-slate-200">{l}</option>
                         ))}
                       </select>
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
@@ -272,7 +272,7 @@ export function DashboardPage({ currentAdmin, onLogout }) {
                     <Button type="submit" variant="primary" className="w-full">
                       Save Changes
                     </Button>
-                    <Button variant="secondary" onClick={() => setEditingPatient(null)} className="w-full">
+                    <Button variant="secondary" onClick={() => setEditingPatient(null)} className="w-full dark:bg-slate-950 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800">
                       Cancel
                     </Button>
                   </div>
@@ -291,12 +291,12 @@ export function DashboardPage({ currentAdmin, onLogout }) {
               placeholder="Search ward by name or phone..." 
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-slate-100 rounded-2xl text-slate-700 text-sm outline-none focus:border-sky-300 placeholder-slate-400 shadow-sm"
+              className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl text-slate-700 dark:text-slate-200 outline-none focus:border-sky-300 placeholder-slate-400 dark:placeholder-slate-550 shadow-sm transition-colors"
             />
             {searchTerm && (
               <button 
                 onClick={() => setSearchTerm("")}
-                className="absolute right-4 text-slate-400 hover:text-slate-600 font-bold text-xs flex items-center gap-1 cursor-pointer select-none"
+                className="absolute right-4 text-slate-400 hover:text-slate-650 font-bold text-xs flex items-center gap-1 cursor-pointer select-none"
               >
                 <X className="w-3.5 h-3.5" /> Clear
               </button>

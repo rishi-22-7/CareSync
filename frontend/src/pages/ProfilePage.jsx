@@ -86,7 +86,7 @@ export function ProfilePage({ currentAdmin, onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col transition-colors duration-300">
       <Navbar adminName={currentAdmin?.name} onLogout={onLogout} />
 
       <main className="max-w-4xl mx-auto px-6 py-10 flex-1 w-full">
@@ -106,19 +106,19 @@ export function ProfilePage({ currentAdmin, onLogout }) {
           <div className="md:col-span-1 flex flex-col gap-6">
             
             {/* Profile info */}
-            <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center text-2xl font-bold border border-sky-100 mb-4 shadow-inner">
+            <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex flex-col items-center text-center transition-colors">
+              <div className="w-20 h-20 rounded-full bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl font-bold border border-sky-100 dark:border-sky-900/50 mb-4 shadow-inner">
                 {initials}
               </div>
-              <h2 className="text-slate-800 font-extrabold text-lg truncate w-full">{currentAdmin?.name || "Admin Clinic"}</h2>
-              <span className="text-slate-400 text-xs font-semibold mt-1">Caretaker Account</span>
+              <h2 className="text-slate-800 dark:text-slate-100 font-extrabold text-lg truncate w-full">{currentAdmin?.name || "Admin Clinic"}</h2>
+              <span className="text-slate-400 dark:text-slate-500 text-xs font-semibold mt-1">Caretaker Account</span>
               
-              <div className="w-full border-t border-slate-50 mt-6 pt-5 flex flex-col gap-4 text-left">
+              <div className="w-full border-t border-slate-50 dark:border-slate-800/80 mt-6 pt-5 flex flex-col gap-4 text-left">
                 <div className="flex items-center gap-3">
                   <User className="w-4.5 h-4.5 text-slate-400 flex-shrink-0" />
                   <div>
                     <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Caretaker ID</p>
-                    <p className="text-slate-700 text-sm font-semibold mt-0.5">#{currentAdmin?.admin_id}</p>
+                    <p className="text-slate-700 dark:text-slate-350 text-sm font-semibold mt-0.5">#{currentAdmin?.admin_id}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -132,10 +132,10 @@ export function ProfilePage({ currentAdmin, onLogout }) {
             </div>
 
             {/* Statistics */}
-            <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+            <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm transition-colors">
               <div className="flex items-center gap-2 mb-4">
                 <BarChart3 className="w-4.5 h-4.5 text-sky-500 flex-shrink-0" />
-                <h3 className="text-slate-800 font-extrabold text-sm uppercase tracking-wider">Live Stats</h3>
+                <h3 className="text-slate-800 dark:text-slate-200 font-extrabold text-sm uppercase tracking-wider">Live Stats</h3>
               </div>
               
               {loadingStats ? (
@@ -145,13 +145,13 @@ export function ProfilePage({ currentAdmin, onLogout }) {
                 </div>
               ) : (
                 <div className="flex flex-col gap-4">
-                  <div className="flex items-center justify-between p-3 bg-slate-50 border border-slate-100 rounded-2xl">
-                    <span className="text-slate-500 text-xs font-bold">Wards Registered</span>
-                    <span className="text-slate-800 text-base font-extrabold">{patientsCount}</span>
+                  <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-850/80 rounded-2xl">
+                    <span className="text-slate-500 dark:text-slate-450 text-xs font-bold">Wards Registered</span>
+                    <span className="text-slate-800 dark:text-slate-200 text-base font-extrabold">{patientsCount}</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-slate-50 border border-slate-100 rounded-2xl">
-                    <span className="text-slate-500 text-xs font-bold">Medicines Active</span>
-                    <span className="text-slate-800 text-base font-extrabold">{medicationsCount}</span>
+                  <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-850/80 rounded-2xl">
+                    <span className="text-slate-500 dark:text-slate-455 text-xs font-bold">Medicines Active</span>
+                    <span className="text-slate-800 dark:text-slate-200 text-base font-extrabold">{medicationsCount}</span>
                   </div>
                 </div>
               )}
@@ -161,15 +161,15 @@ export function ProfilePage({ currentAdmin, onLogout }) {
 
           {/* Right Column: Change Password */}
           <div className="md:col-span-2">
-            <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
-              <h3 className="text-slate-800 font-extrabold text-base mb-2">Change Account Password</h3>
-              <p className="text-slate-400 text-xs font-semibold mb-6">Update credentials to keep clinic access secure</p>
+            <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm transition-colors">
+              <h3 className="text-slate-800 dark:text-slate-150 font-extrabold text-base mb-2">Change Account Password</h3>
+              <p className="text-slate-400 dark:text-slate-500 text-xs font-semibold mb-6">Update credentials to keep clinic access secure</p>
               
               <form onSubmit={handleChangePassword} className="flex flex-col gap-5">
                 
                 {/* Old Password */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Current Password</label>
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Current Password</label>
                   <div className="relative flex items-center">
                     <input 
                       type={showOld ? "text" : "password"} 
@@ -177,7 +177,7 @@ export function ProfilePage({ currentAdmin, onLogout }) {
                       value={oldPassword}
                       onChange={e => setOldPassword(e.target.value)} 
                       required
-                      className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white placeholder-slate-400 transition-colors"
+                      className="w-full pl-4 pr-12 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-200 text-sm outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 placeholder-slate-400 dark:placeholder-slate-650 transition-colors"
                     />
                     <button
                       type="button"
@@ -191,7 +191,7 @@ export function ProfilePage({ currentAdmin, onLogout }) {
 
                 {/* New Password */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">New Password</label>
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">New Password</label>
                   <div className="relative flex items-center">
                     <input 
                       type={showNew ? "text" : "password"} 
@@ -199,7 +199,7 @@ export function ProfilePage({ currentAdmin, onLogout }) {
                       value={newPassword}
                       onChange={e => setNewPassword(e.target.value)} 
                       required
-                      className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white placeholder-slate-400 transition-colors"
+                      className="w-full pl-4 pr-12 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-200 text-sm outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 placeholder-slate-400 dark:placeholder-slate-650 transition-colors"
                     />
                     <button
                       type="button"
@@ -213,7 +213,7 @@ export function ProfilePage({ currentAdmin, onLogout }) {
 
                 {/* Confirm New Password */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Confirm New Password</label>
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Confirm New Password</label>
                   <div className="relative flex items-center">
                     <input 
                       type={showConfirm ? "text" : "password"} 
@@ -221,7 +221,7 @@ export function ProfilePage({ currentAdmin, onLogout }) {
                       value={confirmPassword}
                       onChange={e => setConfirmPassword(e.target.value)} 
                       required
-                      className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:border-sky-500 focus:bg-white placeholder-slate-400 transition-colors"
+                      className="w-full pl-4 pr-12 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-200 text-sm outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 placeholder-slate-400 dark:placeholder-slate-650 transition-colors"
                     />
                     <button
                       type="button"

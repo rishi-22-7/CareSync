@@ -1,25 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Sun, Moon } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 export function Navbar({ adminName, onLogout }) {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("caresync_theme") || "light";
-  });
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    const body = window.document.body;
-    root.classList.remove("light", "dark");
-    body.classList.remove("light", "dark");
-    root.classList.add(theme);
-    body.classList.add(theme);
-    localStorage.setItem("caresync_theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === "light" ? "dark" : "light"));
-  };
+  const { theme, toggleTheme } = useTheme();
 
   const initials = adminName
     ? adminName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase()
