@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from app.routers import auth, patients, medications, uploads
 import app.models  # noqa: F401 — ensures all models are registered with Base
 
-load_dotenv()
+load_dotenv(override=True)
 
 # ── Cloudinary configuration (done once here, not in every router) ──
 cloudinary.config(
