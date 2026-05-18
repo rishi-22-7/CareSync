@@ -10,6 +10,14 @@ import { EmptyState } from "../components/ui/EmptyState";
 import { ConfirmDialog } from "../components/ui/ConfirmDialog";
 import { Plus, X, ChevronDown, Search } from "lucide-react";
 
+// =========================================================================
+// TWILIO SANDBOX REVIEWER CONFIGURATION
+// Replace "YOUR_SANDBOX_KEYWORD" with your exact Twilio sandbox keyword
+// (e.g., "standard-choice", "direct-industry", etc.) so your teacher/reviewer
+// can click a single button to auto-register their phone to receive messages!
+// =========================================================================
+const TWILIO_SANDBOX_KEYWORD = "YOUR_SANDBOX_KEYWORD";
+
 export function DashboardPage({ currentAdmin, onLogout }) {
   const navigate = useNavigate();
   
@@ -30,6 +38,11 @@ export function DashboardPage({ currentAdmin, onLogout }) {
   
   // Confirmation state
   const [confirm, setConfirm] = useState(null);
+
+  // Sandbox Tester Opt-in Banner state
+  const [showSandboxBanner, setShowSandboxBanner] = useState(() => {
+    return localStorage.getItem("caresync_hide_sandbox") !== "true";
+  });
 
   const fetchPatients = async () => {
     if (!currentAdmin) return;
@@ -153,6 +166,58 @@ export function DashboardPage({ currentAdmin, onLogout }) {
             )}
           </Button>
         </div>
+
+        {/* Sandbox Tester Opt-in Banner */}
+        <AnimatePresence>
+          {showSandboxBanner && (
+            <motion.div
+              initial={{ opacity: 0, y: -15, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -15, scale: 0.98 }}
+              className="relative overflow-hidden mb-8 p-6 rounded-3xl bg-gradient-to-r from-sky-500/10 via-blue-500/5 to-indigo-500/10 dark:from-sky-500/15 dark:via-blue-500/5 dark:to-indigo-500/15 border border-sky-100 dark:border-sky-900/60 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-colors"
+            >
+              {/* Subtle background glow */}
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-sky-400/10 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="flex items-start gap-4 flex-1">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-2xl flex-shrink-0 border border-emerald-500/20">
+                  💬
+                </div>
+                <div>
+                  <h3 className="text-slate-800 dark:text-slate-200 font-extrabold text-base flex items-center gap-2">
+                    Sandbox Reviewer Opt-in Mode
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-[10px] font-bold uppercase tracking-wider">
+                      Live Test
+                    </span>
+                  </h3>
+                  <p className="text-slate-500 dark:text-slate-400 text-xs font-semibold mt-1.5 max-w-2xl leading-relaxed">
+                    To receive automated WhatsApp reminders, WhatsApp requires Sandbox authorization. Click the button to automatically open WhatsApp and send the opt-in message. Once sent, register your number as a patient here!
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 w-full md:w-auto flex-shrink-0">
+                <a
+                  href={`https://wa.me/14155238886?text=${encodeURIComponent("join " + TWILIO_SANDBOX_KEYWORD)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 text-center text-xs font-bold text-white bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 rounded-2xl shadow-lg shadow-emerald-200 dark:shadow-none transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 flex-1 md:flex-none cursor-pointer"
+                >
+                  <span>📲</span> Activate on WhatsApp
+                </a>
+                <button
+                  onClick={() => {
+                    setShowSandboxBanner(false);
+                    localStorage.setItem("caresync_hide_sandbox", "true");
+                  }}
+                  className="px-4 py-3 text-xs font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl transition-all cursor-pointer flex-1 md:flex-none"
+                >
+                  Got it
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Dynamic Patient Form Slideout */}
         <AnimatePresence>
