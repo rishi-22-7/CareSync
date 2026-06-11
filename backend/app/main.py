@@ -3,6 +3,8 @@ import cloudinary
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from apscheduler.schedulers.background import BackgroundScheduler
+from app.workers.scheduler import check_schedules
 
 from app.routers import auth, patients, medications, uploads
 import app.models  # noqa: F401 — ensures all models are registered with Base
@@ -68,3 +70,11 @@ app.include_router(auth.router)
 app.include_router(patients.router)
 app.include_router(medications.router)
 app.include_router(uploads.router)
+
+
+@app.on_event("startup")
+def start_scheduler():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(check_schedules, trigger="interval", minutes=1)
+    scheduler.start()
+    print("CareSync Background Scheduler started inside FastAPI process.")

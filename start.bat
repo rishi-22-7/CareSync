@@ -12,9 +12,9 @@ echo  [1/3] Starting Backend API...
 start "CareSync - Backend API" cmd /k "cd /d "%~dp0backend" && venv\Scripts\uvicorn app.main:app --reload --port 8000"
 timeout /t 3 /nobreak >nul
 
-echo  [2/3] Starting Scheduler...
-start "CareSync - Scheduler" cmd /k "cd /d "%~dp0backend" && venv\Scripts\python -m app.workers.scheduler"
-timeout /t 2 /nobreak >nul
+echo  [2/3] (Skipped) Scheduler is now built into Backend API!
+rem start "CareSync - Scheduler" cmd /k "cd /d "%~dp0backend" && venv\Scripts\python -m app.workers.scheduler"
+timeout /t 1 /nobreak >nul
 
 echo  [3/3] Starting Frontend...
 start "CareSync - Frontend" cmd /k "cd /d "%~dp0frontend" && npm run dev"

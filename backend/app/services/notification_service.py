@@ -27,10 +27,11 @@ def send_reminder(patient_name, medicine_name, dosage, instruction, image_url, t
         )
 
     to_whatsapp = to_number if to_number.startswith("whatsapp:") else f"whatsapp:{to_number}"
+    from_whatsapp = TWILIO_WHATSAPP_NUMBER if TWILIO_WHATSAPP_NUMBER.startswith("whatsapp:") else f"whatsapp:{TWILIO_WHATSAPP_NUMBER}"
 
     message = client.messages.create(
         body=message_body,
-        from_=f"whatsapp:{TWILIO_WHATSAPP_NUMBER}",
+        from_=from_whatsapp,
         to=to_whatsapp,
         media_url=[image_url],
     )
