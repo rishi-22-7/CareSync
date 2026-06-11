@@ -26,17 +26,30 @@ origins = [
 ]
 allowed_origins_env = os.getenv("CORS_ALLOWED_ORIGINS")
 if allowed_origins_env:
-    origins.extend([origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()])
+    for origin in allowed_origins_env.split(","):
+        origin = origin.strip()
+        if origin:
+            # Strip trailing slash if present (browsers send origins without trailing slashes)
+            if origin.endswith("/"):
+                origin = origin.rstrip("/")
+            origins.append(origin)
+    
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 else:
-    origins = ["*"]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True if "*" not in origins else False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    # If no env variable is set, default to allow any origin with credentials using regex
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origin_regex=r"https?://.*",
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 @app.get("/", tags=["Health"])
