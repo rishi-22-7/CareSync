@@ -16,7 +16,7 @@ CareSync is a premium, web-based healthcare assistant application designed to br
     *   Automatic translation of reminder bodies into **English, Hindi, Telugu, Tamil, Kannada, and Malayalam** to respect patients' native preferences.
 *   **🖼️ Cloudinary Visual Prescriptions:**
     *   Upload, compress, and link prescription/medicine images securely.
-    *   WhatsApp reminders arrive with high-resolution image attachments so patients know exactly *which* tablet to take.
+    *   WhatsApp reminders arrive with high-resolution image attachments so patients know exactly _which_ tablet to take.
 *   **📲 Sandbox Tester Opt-in Mode:**
     *   A beautifully animated, dismissible reviewer banner on the dashboard.
     *   Features a **"One-Click WhatsApp Activation"** link which auto-opens WhatsApp and pre-fills the Twilio join message, making reviewer/teacher evaluations seamless.
@@ -28,7 +28,7 @@ CareSync is a premium, web-based healthcare assistant application designed to br
 ## 🛠️ Technology Stack
 
 | Layer | Technology | Purpose |
-| :--- | :--- | :--- |
+| --- | --- | --- |
 | **Frontend** | React (Vite) | Responsive SPA Framework |
 | **Styling** | Tailwind CSS | Sleek Glassmorphism & Themes |
 | **Animations** | Framer Motion | Smooth banners, slideouts, & page transition micro-animations |
@@ -42,7 +42,7 @@ CareSync is a premium, web-based healthcare assistant application designed to br
 
 ## 📂 Project Architecture & Structure
 
-```filepath
+```
 CareSync_Project/
 ├── backend/
 │   ├── app/
@@ -89,18 +89,19 @@ CareSync_Project/
 
 ## 🚀 Live Deployment & Testing Notes
 
-> [!IMPORTANT]
+> \[!IMPORTANT\]  
 > **PLEASE READ THIS BEFORE TESTING THE LIVE DEPLOYED LINK:**
 > 
 > Because this application runs in development/testing sandbox mode, the Twilio WhatsApp API uses the **Twilio Sandbox**. By default, WhatsApp **prohibits** unsolicited automated testing messages to numbers that have not explicitly opted in.
 > 
 > **How to Receive Reminders on Your Personal WhatsApp:**
-> 1. Log into the CareSync Web App.
-> 2. On the top of the **Dashboard**, you will see a green banner labeled **"Sandbox Reviewer Opt-in Mode"**.
-> 3. Click the **📲 Activate on WhatsApp** button.
-> 4. This will automatically open WhatsApp on your phone or browser, starting a chat with `+1 415 523 8886` and pre-filling the message with: **`join frog-explain`**. (Or your custom sandbox keyword).
-> 5. Click **Send** in WhatsApp.
-> 6. Return to the CareSync website, register your phone number (e.g. `+91XXXXXXXXXX`) as a patient, schedule a medication, and click **Trigger WhatsApp**. It will land instantly on your phone with the visual prescription!
+> 
+> 1.  Log into the CareSync Web App.
+> 2.  On the top of the **Dashboard**, you will see a green banner labeled **"Sandbox Reviewer Opt-in Mode"**.
+> 3.  Click the **📲 Activate on WhatsApp** button.
+> 4.  This will automatically open WhatsApp on your phone or browser, starting a chat with `+1 415 523 8886` and pre-filling the message with: `**join frog-explain**`. (Or your custom sandbox keyword).
+> 5.  Click **Send** in WhatsApp.
+> 6.  Return to the CareSync website, register your phone number (e.g. `+91XXXXXXXXXX`) as a patient, schedule a medication, and click **Trigger WhatsApp**. It will land instantly on your phone with the visual prescription!
 
 ---
 
@@ -108,8 +109,10 @@ CareSync_Project/
 
 To run this project, you need credentials from **Supabase (Database)**, **Twilio (WhatsApp SMS)**, and **Cloudinary (Media Hosting)**. Follow the detailed steps below to configure them:
 
-### 1. Supabase (PostgreSQL Database Setup)
+### 1\. Supabase (PostgreSQL Database Setup)
+
 Supabase provides the hosted PostgreSQL database where patient, caretaker, and medication logs are stored.
+
 1.  Go to [supabase.com](https://supabase.com) and click **Sign Up** (or log in with GitHub).
 2.  Click **New Project** ➡️ Select your organization.
 3.  Name your project `CareSync`, enter a secure database password, and choose a region nearest to you.
@@ -117,37 +120,29 @@ Supabase provides the hosted PostgreSQL database where patient, caretaker, and m
 5.  Click on **Database** under settings.
 6.  Scroll down to the **Connection String** section and select the **URI** tab.
 7.  Copy the connection string. It will look like this:
-    ```text
-    postgresql://postgres.[your-project-ref]:[your-password]@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
-    ```
-8.  *Important:* Since SQLAlchemy uses `psycopg2`, add `+psycopg2` after `postgresql` and replace `[your-password]` with the database password you chose in step 3. The final string for your `.env` should look like:
-    ```env
-    DATABASE_URL=postgresql+psycopg2://postgres.[your-project-ref]:yourpassword@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
-    ```
+8.  _Important:_ Since SQLAlchemy uses `psycopg2`, add `+psycopg2` after `postgresql` and replace `[your-password]` with the database password you chose in step 3. The final string for your `.env` should look like:
 
 ---
 
-### 2. Twilio (WhatsApp API Gateway Setup)
+### 2\. Twilio (WhatsApp API Gateway Setup)
+
 Twilio handles the automated outbound WhatsApp medication reminder messages.
+
 1.  Go to [twilio.com](https://www.twilio.com) and sign up for a free trial account.
 2.  Once logged in and inside your Twilio Console home page, locate your credentials in the **Account Info** dashboard:
     *   **Account SID**: Copy this string (starts with `AC...`).
     *   **Auth Token**: Click "Show" and copy this token.
-3.  In the left navigation sidebar of your Twilio console, navigate to:
+3.  In the left navigation sidebar of your Twilio console, navigate to:  
     **Messaging** ➡️ **Try it out** ➡️ **Send a WhatsApp Message**.
 4.  You will see your shared Sandbox Number (typically `+1 415 523 8886`) and a unique keyword (e.g. `join standard-choice` or similar).
 5.  Save these values to your backend `.env` file:
-    ```env
-    TWILIO_ACCOUNT_SID=your_copied_account_sid
-    TWILIO_AUTH_TOKEN=your_copied_auth_token
-    TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
-    TWILIO_SANDBOX_KEYWORD=your-sandbox-keyword (e.g. standard-choice)
-    ```
 
 ---
 
-### 3. Cloudinary (Prescription Image Storage Setup)
+### 3\. Cloudinary (Prescription Image Storage Setup)
+
 Cloudinary is used to host prescription images uploaded by caretakers, generating optimized HTTPS delivery URLs for WhatsApp.
+
 1.  Go to [cloudinary.com](https://cloudinary.com) and sign up for a free account.
 2.  Upon logging in, you will be redirected to your **Cloudinary Dashboard**.
 3.  In the top section of your dashboard, locate the **Product Environment Credentials**:
@@ -155,11 +150,6 @@ Cloudinary is used to host prescription images uploaded by caretakers, generatin
     *   **API Key** (e.g. `212999676874887`)
     *   **API Secret** (e.g. `JcfQvPdc8t57qw3DX9GKneMId1A`)
 4.  Copy these three values and add them to your backend `.env` file:
-    ```env
-    CLOUDINARY_CLOUD_NAME=your_cloud_name
-    CLOUDINARY_API_KEY=your_api_key
-    CLOUDINARY_API_SECRET=your_api_secret
-    ```
 
 ---
 
@@ -168,73 +158,105 @@ Cloudinary is used to host prescription images uploaded by caretakers, generatin
 ### Backend Setup
 
 1.  Navigate to the backend directory:
-    ```bash
-    cd backend
-    ```
 2.  Create and activate a virtual environment:
-    ```bash
-    # Windows Powershell/CMD
-    python -m venv venv
-    venv\Scripts\activate
-    ```
 3.  Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
 4.  Create your backend `.env` file in the `backend/` directory using the credentials acquired in the **Detailed Setup** steps above:
-    ```env
-    DATABASE_URL=postgresql+psycopg2://postgres.[project-ref]:password@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
-    TWILIO_ACCOUNT_SID=AC...
-    TWILIO_AUTH_TOKEN=...
-    TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
-    TWILIO_SANDBOX_KEYWORD=frog-explain
-    CLOUDINARY_CLOUD_NAME=...
-    CLOUDINARY_API_KEY=...
-    CLOUDINARY_API_SECRET=...
-    ```
-5.  **Initialize Database Tables**:
+5.  **Initialize Database Tables**:  
     CareSync includes an automated schema setup script. To create your database tables (`admins`, `patients`, `medications`) inside your Supabase instance, simply run:
-    ```bash
-    python create_tables.py
-    ```
-6.  Start the FastAPI server:
-    ```bash
-    uvicorn app.main:app --reload
-    ```
-    *The API will start running locally at `http://127.0.0.1:8000`.*
+6.  Start the FastAPI server:_The API will start running locally at_ `_http://127.0.0.1:8000_`_._
 
 ---
 
 ### Frontend Setup
 
 1.  Navigate to the frontend directory:
-    ```bash
-    cd ../frontend
-    ```
 2.  Install packages:
-    ```bash
-    npm install
-    ```
 3.  Ensure the API client points to your local backend (`http://127.0.0.1:8000`) inside `frontend/src/services/api.js`.
-4.  Start the Vite dev server:
-    ```bash
-    npm run dev
-    ```
-    *The web application will open locally at `http://localhost:5173`.*
+4.  Start the Vite dev server:_The web application will open locally at_ `_http://localhost:5173_`_._
 
 ---
 
 ## 🚀 Easy Double-Click Execution
+
 For rapid testing, you can execute the `start.bat` script located in the project's root directory:
-```bash
+
+```
 # Simply double-click the start.bat file or run it in CMD:
 start.bat
 ```
+
 This will automatically launch the backend virtual environment, start the FastAPI uvicorn daemon, download/compile Vite dependencies, and spin up the frontend browser server simultaneously!
 
 ---
 
 ## 🔮 Future Enhancements
+
 *   **⏰ Automatic Cron Scheduler:** Integrate celery/cron tasks on the server to automatically send morning, afternoon, evening, and night triggers daily without requiring manual caretaker triggers.
 *   **📊 Patient Adherence Reports:** Interactive charts showing if wards logged medication intake by replying "YES" on WhatsApp.
 *   **📞 Emergency Call Trigger:** Integrate Twilio Voice to auto-call the patient or caretaker if a high-priority medication is missed twice.
+
+```
+npm run dev
+```
+
+```
+npm install
+```
+
+```
+cd ../frontend
+```
+
+```
+uvicorn app.main:app --reload
+```
+
+```
+python create_tables.py
+```
+
+```
+DATABASE_URL=postgresql+psycopg2://postgres.[project-ref]:password@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
+TWILIO_ACCOUNT_SID=AC...
+TWILIO_AUTH_TOKEN=...
+TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
+TWILIO_SANDBOX_KEYWORD=frog-explain
+CLOUDINARY_CLOUD_NAME=...
+CLOUDINARY_API_KEY=...
+CLOUDINARY_API_SECRET=...
+```
+
+```
+pip install -r requirements.txt
+```
+
+```
+# Windows Powershell/CMD
+python -m venv venv
+venv\Scripts\activate
+```
+
+```
+cd backend
+```
+
+```
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+```
+TWILIO_ACCOUNT_SID=your_copied_account_sid
+TWILIO_AUTH_TOKEN=your_copied_auth_token
+TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
+TWILIO_SANDBOX_KEYWORD=your-sandbox-keyword (e.g. standard-choice)
+```
+
+```
+DATABASE_URL=postgresql+psycopg2://postgres.[your-project-ref]:yourpassword@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
+```
+
+```
+postgresql://postgres.[your-project-ref]:[your-password]@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
+```

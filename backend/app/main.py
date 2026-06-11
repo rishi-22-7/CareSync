@@ -19,10 +19,21 @@ cloudinary.config(
 
 app = FastAPI(title="CareSync API", version="2.0.0")
 
+# Configure CORS
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+allowed_origins_env = os.getenv("CORS_ALLOWED_ORIGINS")
+if allowed_origins_env:
+    origins.extend([origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()])
+else:
+    origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=origins,
+    allow_credentials=True if "*" not in origins else False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
