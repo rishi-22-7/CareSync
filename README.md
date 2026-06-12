@@ -1,262 +1,211 @@
-# 💊 CareSync — Automated Multi-Lingual WhatsApp Medication Reminder
+<div align="center">
+  <h1>💊 CareSync</h1>
+  <h3>Automated Multi-Lingual WhatsApp Medication Reminder Platform</h3>
 
-CareSync is a premium, web-based healthcare assistant application designed to bridge the gap between caretakers and patients (wards). The platform empowers caretakers to register wards, schedule precise medication schedules (morning, afternoon, evening, night), translate reminder messages automatically into multiple regional languages, and trigger automated WhatsApp notifications containing visual prescription images, clear dosage instructions, and timeslot highlights directly to the patient's phone.
+  <p align="center">
+    <a href="https://medication-caresync.vercel.app" target="_blank">
+      <img src="https://img.shields.io/badge/Live%20Demo-Vercel-success?style=for-the-badge&logo=vercel" alt="Live Demo" />
+    </a>
+    <a href="https://caresync-agji.onrender.com/docs" target="_blank">
+      <img src="https://img.shields.io/badge/API%20Docs-Swagger-blue?style=for-the-badge&logo=swagger" alt="API Docs" />
+    </a>
+    <a href="https://github.com/rishi-22-7/CareSync" target="_blank">
+      <img src="https://img.shields.io/badge/Repository-GitHub-181717?style=for-the-badge&logo=github" alt="GitHub Repo" />
+    </a>
+  </p>
 
----
+  <p align="center">
+    <strong>Bridging caretakers and patients with precision scheduling, real-time Cloudinary prescription uploads, automated translations, and instant Twilio WhatsApp delivery.</strong>
+  </p>
+  
+  <hr />
+</div>
 
-## ✨ Core Features
-
-*   **🧑‍⚕️ Caretaker Dashboard (Admin Panel):**
-    *   Register and manage ward profiles securely.
-    *   Real-time status tracking of all registered wards and active scheduled medication slots.
-    *   Dynamic light/dark mode theme toggling for an elegant, premium look app-wide.
-    *   Clean search bar to filter patient logs by name or contact number.
-*   **💬 Automated Multi-Lingual WhatsApp Reminders:**
-    *   One-click, real-time trigger of reminders to WhatsApp.
-    *   Automatic translation of reminder bodies into **English, Hindi, Telugu, Tamil, Kannada, and Malayalam** to respect patients' native preferences.
-*   **🖼️ Cloudinary Visual Prescriptions:**
-    *   Upload, compress, and link prescription/medicine images securely.
-    *   WhatsApp reminders arrive with high-resolution image attachments so patients know exactly _which_ tablet to take.
-*   **📲 Sandbox Tester Opt-in Mode:**
-    *   A beautifully animated, dismissible reviewer banner on the dashboard.
-    *   Features a **"One-Click WhatsApp Activation"** link which auto-opens WhatsApp and pre-fills the Twilio join message, making reviewer/teacher evaluations seamless.
-*   **🔒 Robust MVC Architecture:**
-    *   Strict separation of concerns between client UI logic, FastAPI routers, and backend database connections.
-
----
-
-## 🛠️ Technology Stack
-
-| Layer | Technology | Purpose |
-| --- | --- | --- |
-| **Frontend** | React (Vite) | Responsive SPA Framework |
-| **Styling** | Tailwind CSS | Sleek Glassmorphism & Themes |
-| **Animations** | Framer Motion | Smooth banners, slideouts, & page transition micro-animations |
-| **Backend** | FastAPI (Python 3) | Asynchronous RESTful API Engine |
-| **Database** | PostgreSQL (Supabase) | Scalable Relational Storage |
-| **API ORM** | SQLAlchemy | Python Object Relational Mapper |
-| **Messaging** | Twilio WhatsApp API | Outbound Notification Gateway |
-| **Media Host** | Cloudinary | Secure Medication Image Hosting |
+## 🌐 Live Production Deployments
+* **Frontend client (Vercel):** [https://medication-caresync.vercel.app](https://medication-caresync.vercel.app)
+* **Backend API (Render):** [https://caresync-agji.onrender.com](https://caresync-agji.onrender.com)
+* **API Documentation:** [https://caresync-agji.onrender.com/docs](https://caresync-agji.onrender.com/docs)
 
 ---
 
-## 📂 Project Architecture & Structure
+## ✨ Features Highlight
+
+<table>
+  <tr>
+    <td width="50%">
+      <h4>🧑‍⚕️ Caretaker Dashboard (Admin)</h4>
+      <ul>
+        <li>Secure Caretaker registration and credentials management.</li>
+        <li>Interactive glassmorphic control panel to register wards/patients.</li>
+        <li>Full CRUD control over medications and scheduling slots.</li>
+        <li>Real-time search filters by patient name or phone number.</li>
+        <li>Modern light/dark mode UI styling with theme persistence.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h4>💬 Multi-Lingual WhatsApp Alerts</h4>
+      <ul>
+        <li>One-click manual notification triggers + Background scheduler.</li>
+        <li>Automated translations into regional languages: **English, Hindi, Telugu, Tamil, Malayalam, and Kannada**.</li>
+        <li>Outbound messages contain high-res Cloudinary prescription attachments.</li>
+        <li>Sandbox reviewer opt-in panel for rapid teacher/evaluator testing.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 🛠️ High-Tech Stack
+
+<div align="center">
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
+  <img src="https://img.shields.io/badge/Twilio-F22F46?style=for-the-badge&logo=twilio&logoColor=white" alt="Twilio" />
+  <img src="https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white" alt="Cloudinary" />
+</div>
+
+---
+
+## 📂 Project Architecture
 
 ```
 CareSync_Project/
 ├── backend/
 │   ├── app/
 │   │   ├── core/
-│   │   │   ├── database.py       # Supabase PostgreSQL engine & connection pools
-│   │   │   └── security.py       # Password hashing & validation utilities
+│   │   │   ├── database.py       # Supabase PostgreSQL engine configuration
+│   │   │   └── security.py       # Caretaker bcrypt verification routines
 │   │   ├── models/
-│   │   │   ├── admin.py          # Caretaker database model
-│   │   │   ├── patient.py        # Ward database model
-│   │   │   └── medication.py     # Scheduled medication database model
+│   │   │   ├── admin.py          # Caretaker database model schema
+│   │   │   ├── patient.py        # Patient (ward) database model schema
+│   │   │   └── medication.py     # Scheduled medication database schema
 │   │   ├── routers/
-│   │   │   ├── auth.py           # Login, registration, & password router
-│   │   │   ├── patients.py       # CRUD router for wards
-│   │   │   ├── medications.py    # CRUD router for medication logs & triggers
-│   │   │   └── uploads.py        # Cloudinary prescription upload handler
+│   │   │   ├── auth.py           # Admin authentication API controller
+│   │   │   ├── patients.py       # Patients CRUD API controller
+│   │   │   ├── medications.py    # Medications CRUD & triggers API controller
+│   │   │   └── uploads.py        # Cloudinary direct upload route
 │   │   ├── services/
-│   │   │   ├── medication_service.py # Core translation & scheduler utility
-│   │   │   └── notification_service.py # Twilio WhatsApp messaging client
-│   │   └── main.py               # FastAPI gateway & CORSMiddleware
-│   ├── .env                      # Secure backend credentials (ignored by Git)
-│   └── requirements.txt          # Python dependencies
+│   │   │   ├── medication_service.py   # Translation helper logic
+│   │   │   └── notification_service.py # Twilio API caller client
+│   │   └── main.py               # FastAPI bootstrapper & BackgroundScheduler
+│   ├── requirements.txt          # Python micro-service requirements
+│   └── create_tables.py          # Supabase DB schema initialization script
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── ui/               # Button, EmptyState, ConfirmDialog UI atoms
-│   │   │   ├── Navbar.jsx        # Premium header with theme toggle
-│   │   │   ├── PatientCard.jsx   # Interactive ward overview card
-│   │   │   └── MedModal.jsx      # Medication scheduler manager popup
+│   │   │   ├── ui/               # Modular UI atoms (Buttons, dialogs, banners)
+│   │   │   ├── Navbar.jsx        # Premium header + Theme toggler
+│   │   │   └── PatientCard.jsx   # Ward manager action cards
 │   │   ├── pages/
-│   │   │   ├── LandingPage.jsx   # Eye-catching responsive home page
-│   │   │   ├── LoginPage.jsx     # Caretaker authentication screen
-│   │   │   ├── DashboardPage.jsx # Core administrative control panel
-│   │   │   ├── ManagePatientPage.jsx # Individual ward log manager
-│   │   │   └── ProfilePage.jsx   # Caretaker account & password settings
+│   │   │   ├── LandingPage.jsx   # Interactive glassmorphic welcome page
+│   │   │   ├── LoginPage.jsx     # Caretaker access gateway
+│   │   │   └── DashboardPage.jsx # Core administrative console
 │   │   ├── services/
-│   │   │   └── api.js            # Axios client, config & CRUD endpoints
-│   │   └── index.css             # Root stylesheet & CSS custom design tokens
-│   ├── index.html                # Entry HTML document
-│   └── package.json              # Frontend modules and scripts
-└── start.bat                     # Double-click launcher to run both servers locally
+│   │   │   └── api.js            # Axios endpoint client configurations
+│   │   └── index.css             # Main stylesheet & Tailwind custom colors
+│   ├── vercel.json               # SPA router redirection configurations
+│   └── package.json              # Client-side node configurations
+└── start.bat                     # Single double-click workspace launcher
 ```
 
 ---
 
-## 🚀 Live Deployment & Testing Notes
+## 📲 Testing the Outbound WhatsApp Sandbox Reminders
 
-> \[!IMPORTANT\]  
-> **PLEASE READ THIS BEFORE TESTING THE LIVE DEPLOYED LINK:**
-> 
-> Because this application runs in development/testing sandbox mode, the Twilio WhatsApp API uses the **Twilio Sandbox**. By default, WhatsApp **prohibits** unsolicited automated testing messages to numbers that have not explicitly opted in.
-> 
-> **How to Receive Reminders on Your Personal WhatsApp:**
-> 
-> 1.  Log into the CareSync Web App.
-> 2.  On the top of the **Dashboard**, you will see a green banner labeled **"Sandbox Reviewer Opt-in Mode"**.
-> 3.  Click the **📲 Activate on WhatsApp** button.
-> 4.  This will automatically open WhatsApp on your phone or browser, starting a chat with `+1 415 523 8886` and pre-filling the message with: `**join frog-explain**`. (Or your custom sandbox keyword).
-> 5.  Click **Send** in WhatsApp.
-> 6.  Return to the CareSync website, register your phone number (e.g. `+91XXXXXXXXXX`) as a patient, schedule a medication, and click **Trigger WhatsApp**. It will land instantly on your phone with the visual prescription!
+> [!IMPORTANT]
+> Because CareSync is running in a sandbox developer account, WhatsApp requires you to explicitly opt-in to receive medication reminder messages on your phone:
+>
+> 1. Visit the [Live Web Application](https://medication-caresync.vercel.app).
+> 2. Inside the Dashboard, locate the green banner: **"Sandbox Reviewer Opt-in Mode"**.
+> 3. Click **📲 Activate on WhatsApp**. 
+> 4. This automatically opens WhatsApp with Twilio Sandbox (`+1 415 523 8886`) and pre-fills the opt-in keyword message (e.g. `join frog-explain`). 
+> 5. Click **Send** in WhatsApp.
+> 6. Return to CareSync web dashboard, register your phone number, schedule a medicine, and click **Trigger WhatsApp**. You will receive your translated reminder with the prescription image immediately!
 
 ---
 
-## ⚙️ Detailed Third-Party Service Setup
+## ⚙️ Service Integrations and Config
 
-To run this project, you need credentials from **Supabase (Database)**, **Twilio (WhatsApp SMS)**, and **Cloudinary (Media Hosting)**. Follow the detailed steps below to configure them:
+<details>
+<summary><b>1. Supabase relational database setup</b></summary>
 
-### 1\. Supabase (PostgreSQL Database Setup)
+1. Create a project on [supabase.com](https://supabase.com).
+2. Copy the Connection URI string under **Settings → Database → Connection String → URI**.
+3. Replace the placeholder password with your chosen database password and prepend `postgresql+psycopg2://` instead of `postgresql://`.
+</details>
 
-Supabase provides the hosted PostgreSQL database where patient, caretaker, and medication logs are stored.
+<details>
+<summary><b>2. Twilio WhatsApp sandbox config</b></summary>
 
-1.  Go to [supabase.com](https://supabase.com) and click **Sign Up** (or log in with GitHub).
-2.  Click **New Project** ➡️ Select your organization.
-3.  Name your project `CareSync`, enter a secure database password, and choose a region nearest to you.
-4.  Once the project spins up (takes 1-2 minutes), navigate to the **Project Settings** (gear icon) in the left sidebar.
-5.  Click on **Database** under settings.
-6.  Scroll down to the **Connection String** section and select the **URI** tab.
-7.  Copy the connection string. It will look like this:
-8.  _Important:_ Since SQLAlchemy uses `psycopg2`, add `+psycopg2` after `postgresql` and replace `[your-password]` with the database password you chose in step 3. The final string for your `.env` should look like:
+1. Sign up for a trial account on [twilio.com](https://twilio.com).
+2. Grab the `Account SID` and `Auth Token` from your dashboard.
+3. Access **Messaging → Try it out → Send a WhatsApp Message** to obtain the Shared Sandbox number and keyword (e.g. `frog-explain`).
+</details>
 
----
+<details>
+<summary><b>3. Cloudinary media storage setup</b></summary>
 
-### 2\. Twilio (WhatsApp API Gateway Setup)
-
-Twilio handles the automated outbound WhatsApp medication reminder messages.
-
-1.  Go to [twilio.com](https://www.twilio.com) and sign up for a free trial account.
-2.  Once logged in and inside your Twilio Console home page, locate your credentials in the **Account Info** dashboard:
-    *   **Account SID**: Copy this string (starts with `AC...`).
-    *   **Auth Token**: Click "Show" and copy this token.
-3.  In the left navigation sidebar of your Twilio console, navigate to:  
-    **Messaging** ➡️ **Try it out** ➡️ **Send a WhatsApp Message**.
-4.  You will see your shared Sandbox Number (typically `+1 415 523 8886`) and a unique keyword (e.g. `join standard-choice` or similar).
-5.  Save these values to your backend `.env` file:
+1. Create a free account on [cloudinary.com](https://cloudinary.com).
+2. Retrieve the `Cloud Name`, `API Key`, and `API Secret` from your dashboard credentials console.
+</details>
 
 ---
 
-### 3\. Cloudinary (Prescription Image Storage Setup)
+## 🚀 Local Startup and Run Guide
 
-Cloudinary is used to host prescription images uploaded by caretakers, generating optimized HTTPS delivery URLs for WhatsApp.
+### 📦 Backend Setup
+1. Open terminal in the `backend/` directory.
+2. Initialize virtual environment and install packages:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+3. Initialize Supabase PostgreSQL database tables:
+   ```bash
+   python create_tables.py
+   ```
+4. Fire up the FastAPI micro-service:
+   ```bash
+   uvicorn app.main:app --reload --port 8000
+   ```
 
-1.  Go to [cloudinary.com](https://cloudinary.com) and sign up for a free account.
-2.  Upon logging in, you will be redirected to your **Cloudinary Dashboard**.
-3.  In the top section of your dashboard, locate the **Product Environment Credentials**:
-    *   **Cloud Name** (e.g. `dvcafocq0`)
-    *   **API Key** (e.g. `212999676874887`)
-    *   **API Secret** (e.g. `JcfQvPdc8t57qw3DX9GKneMId1A`)
-4.  Copy these three values and add them to your backend `.env` file:
+### 💻 Frontend Setup
+1. Open terminal in the `frontend/` directory.
+2. Install npm dependencies and boot the Vite server:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
----
-
-## ⚙️ Local Installation & Configuration
-
-### Backend Setup
-
-1.  Navigate to the backend directory:
-2.  Create and activate a virtual environment:
-3.  Install dependencies:
-4.  Create your backend `.env` file in the `backend/` directory using the credentials acquired in the **Detailed Setup** steps above:
-5.  **Initialize Database Tables**:  
-    CareSync includes an automated schema setup script. To create your database tables (`admins`, `patients`, `medications`) inside your Supabase instance, simply run:
-6.  Start the FastAPI server:_The API will start running locally at_ `_http://127.0.0.1:8000_`_._
-
----
-
-### Frontend Setup
-
-1.  Navigate to the frontend directory:
-2.  Install packages:
-3.  Ensure the API client points to your local backend (`http://127.0.0.1:8000`) inside `frontend/src/services/api.js`.
-4.  Start the Vite dev server:_The web application will open locally at_ `_http://localhost:5173_`_._
+### ⚡ Easy Launcher
+Double-click the `start.bat` script in the root directory. It runs the backend database migrations, initiates uvicorn, starts the React SPA client, and loads the interface in your browser automatically!
 
 ---
 
-## 🚀 Easy Double-Click Execution
+## 🔒 Production Environment Configuration
 
-For rapid testing, you can execute the `start.bat` script located in the project's root directory:
+Ensure your live servers are loaded with the following environment variables:
 
-```
-# Simply double-click the start.bat file or run it in CMD:
-start.bat
-```
-
-This will automatically launch the backend virtual environment, start the FastAPI uvicorn daemon, download/compile Vite dependencies, and spin up the frontend browser server simultaneously!
-
----
-
-## 🔮 Future Enhancements
-
-*   **⏰ Automatic Cron Scheduler:** Integrate celery/cron tasks on the server to automatically send morning, afternoon, evening, and night triggers daily without requiring manual caretaker triggers.
-*   **📊 Patient Adherence Reports:** Interactive charts showing if wards logged medication intake by replying "YES" on WhatsApp.
-*   **📞 Emergency Call Trigger:** Integrate Twilio Voice to auto-call the patient or caretaker if a high-priority medication is missed twice.
-
-```
-npm run dev
-```
-
-```
-npm install
-```
-
-```
-cd ../frontend
-```
-
-```
-uvicorn app.main:app --reload
-```
-
-```
-python create_tables.py
-```
-
-```
-DATABASE_URL=postgresql+psycopg2://postgres.[project-ref]:password@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
-TWILIO_ACCOUNT_SID=AC...
-TWILIO_AUTH_TOKEN=...
+### FastAPI Web App (Render)
+```env
+DATABASE_URL=postgresql+psycopg2://[user]:[password]@[host]:5432/postgres
+TWILIO_ACCOUNT_SID=your_twilio_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
 TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
-TWILIO_SANDBOX_KEYWORD=frog-explain
-CLOUDINARY_CLOUD_NAME=...
-CLOUDINARY_API_KEY=...
-CLOUDINARY_API_SECRET=...
+TWILIO_SANDBOX_KEYWORD=your_keyword
+CLOUDINARY_CLOUD_NAME=your_cloudinary_name
+CLOUDINARY_API_KEY=your_cloudinary_key
+CLOUDINARY_API_SECRET=your_cloudinary_secret
+CORS_ALLOWED_ORIGINS=https://medication-caresync.vercel.app
+TZ_OFFSET=5.5
 ```
 
-```
-pip install -r requirements.txt
-```
-
-```
-# Windows Powershell/CMD
-python -m venv venv
-venv\Scripts\activate
-```
-
-```
-cd backend
-```
-
-```
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-```
-
-```
-TWILIO_ACCOUNT_SID=your_copied_account_sid
-TWILIO_AUTH_TOKEN=your_copied_auth_token
-TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
-TWILIO_SANDBOX_KEYWORD=your-sandbox-keyword (e.g. standard-choice)
-```
-
-```
-DATABASE_URL=postgresql+psycopg2://postgres.[your-project-ref]:yourpassword@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
-```
-
-```
-postgresql://postgres.[your-project-ref]:[your-password]@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
+### React Client (Vercel)
+```env
+VITE_API_URL=https://caresync-agji.onrender.com
 ```
